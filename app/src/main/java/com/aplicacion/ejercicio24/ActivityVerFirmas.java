@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.aplicacion.ejercicio24.adapters.Adaptador;
 import com.aplicacion.ejercicio24.configuraciones.SQLiteConexion;
 import com.aplicacion.ejercicio24.configuraciones.Transacciones;
-import com.aplicacion.ejercicio24.configuraciones.Almacenamiento;
+import com.aplicacion.ejercicio24.configuraciones.Signaturess;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class ActivityVerFirmas extends AppCompatActivity {
 
     SQLiteConexion conexion;
     RecyclerView recyclerView;
-    List<Almacenamiento> almacenamientoList;
+    List<Signaturess> signaturessList;
     List<String> AlmacListString;
 
     Button btnRegresar;
@@ -35,7 +35,7 @@ public class ActivityVerFirmas extends AppCompatActivity {
         conexion = new SQLiteConexion(this, Transacciones.NAME_DATABASE, null, 1);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewVista);
-        almacenamientoList = new ArrayList<>();
+        signaturessList = new ArrayList<>();
         AlmacListString = new ArrayList<>();
 
         //Regresa al Main Activity
@@ -49,21 +49,21 @@ public class ActivityVerFirmas extends AppCompatActivity {
         });
 
         SQLiteDatabase db = conexion.getReadableDatabase();
-        Almacenamiento almacenamiento = null;
+        Signaturess signaturess = null;
         Cursor cursor = db.rawQuery("SELECT * FROM "+ Transacciones.NAME_TABLE,null);
 
         while (cursor.moveToNext()){
-            almacenamiento = new Almacenamiento();
+            signaturess = new Signaturess();
 
-            almacenamiento.id = cursor.getInt(0);
-            almacenamiento.descripcion = cursor.getString(1);
-            almacenamiento.imagen = cursor.getString(2);
+            signaturess.id = cursor.getInt(0);
+            signaturess.descripcion = cursor.getString(1);
+            signaturess.imagen = cursor.getString(2);
 
-            almacenamientoList.add(almacenamiento);
-            AlmacListString.add(almacenamiento.descripcion);
+            signaturessList.add(signaturess);
+            AlmacListString.add(signaturess.descripcion);
         }
 
-        Adaptador adapter = new Adaptador(almacenamientoList);
+        Adaptador adapter = new Adaptador(signaturessList);
         recyclerView.setAdapter(adapter);
     }
 }

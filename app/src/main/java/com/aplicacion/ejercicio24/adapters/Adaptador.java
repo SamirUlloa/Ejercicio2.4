@@ -13,16 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aplicacion.ejercicio24.R;
-import com.aplicacion.ejercicio24.configuraciones.Almacenamiento;
+import com.aplicacion.ejercicio24.configuraciones.Signaturess;
 
 import java.util.List;
 
 public class Adaptador extends RecyclerView.Adapter<Adaptador.SignaruressViewHolder> {
 
-    private List<Almacenamiento> almacenamientoList;
+    private List<Signaturess> signaturessList;
 
-    public Adaptador(List<Almacenamiento> almacenamientoList) {
-        this.almacenamientoList = almacenamientoList;
+    public Adaptador(List<Signaturess> signaturessList) {
+        this.signaturessList = signaturessList;
     }
 
     @NonNull
@@ -37,12 +37,12 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.SignaruressViewHol
 
     @Override
     public void onBindViewHolder(@NonNull Adaptador.SignaruressViewHolder holder, int position) {
-        holder.setData(almacenamientoList.get(position));
+        holder.setData(signaturessList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return almacenamientoList.size();
+        return signaturessList.size();
     }
 
     class SignaruressViewHolder extends RecyclerView.ViewHolder {
@@ -56,7 +56,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.SignaruressViewHol
             txtNombreC = itemView.findViewById(R.id.txtNombreC);
         }
 
-        void setData(Almacenamiento signature){
+        void setData(Signaturess signature){
             txtNombreC.setText(signature.descripcion);
             imageView.setImageBitmap(decodeImage(signature.imagen));
         }
